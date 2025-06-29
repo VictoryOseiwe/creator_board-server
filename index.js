@@ -6,6 +6,7 @@ import passport from "passport";
 import session from "express-session";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/Auth.js";
+import Content from "./model/Content.js";
 import "./passport/Google.js"; // Ensure this imports the Google strategy
 
 connectDB();
@@ -33,6 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", authRoutes);
+app.use("/api/content", Content);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Server is running on port ${process.env.PORT || 5000}`);
